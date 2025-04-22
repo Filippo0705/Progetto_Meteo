@@ -14,6 +14,13 @@ const APIKey = "433a4377c3ec4e2ca6a123148251004";
 const APIMeteoLink = "http://api.weatherapi.com/v1/current.json?key=433a4377c3ec4e2ca6a123148251004&q=Florence&aqi=no&lang=it";
 
 async function getData(citta) {
+
+    if(citta == ""){
+
+        alert("Inserisci prima una città");
+        return;
+        
+    }
     
     const dataRespons = await fetch(`http://api.weatherapi.com/v1/current.json?key=433a4377c3ec4e2ca6a123148251004&q=${citta}&aqi=no&lang=it`);
     const meteoJson = await dataRespons.json();
