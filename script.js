@@ -53,6 +53,7 @@ function setData(data){
     umidita.innerHTML = data.current.humidity + " %";
     condizioni.innerHTML = data.current.condition.text;
     createImg(data.current.condition.icon);
+    cambiaSfondo(data.current.condition.text);
   
 }
 
@@ -64,10 +65,40 @@ function createImg(srcImg){
 
 }
 
+function cambiaSfondo(meteo){
 
+    const body = document.body;
+
+    // Rimuove tutte le classi precedenti che iniziano con "meteo-"
+    body.classList.forEach(cls => {
+        if (cls.startsWith("meteo-")) {
+            body.classList.remove(cls);
+        }
+    });
+
+    // Normalizza il testo della condizione
+    const normalized = meteo
+        .toLowerCase()
+        .replace(/[àá]/g, "a")
+        .replace(/[èé]/g, "e")
+        .replace(/[ìí]/g, "i")
+        .replace(/[òó]/g, "o")
+        .replace(/[ùú]/g, "u")
+        .replace(/[^a-z0-9\s]/g, "") // Rimuove caratteri speciali
+        .trim()
+        .replace(/\s+/g, "-"); // Spazi → trattini
+
+    const classeMeteo = `meteo-${normalized}`;
+
+    // Applica la nuova classe
+    body.classList.add(classeMeteo);
+    
+    }
+      
 cerca.addEventListener("click", () => {
 
     getData(cittaInput.value);
     cittaInput.value = "";
     
 });
+
