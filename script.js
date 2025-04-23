@@ -11,7 +11,7 @@ const condizioni = document.getElementById("condizioni");
 const umidita = document.getElementById("umidita");
 //Nome API weather api
 const APIKey = "433a4377c3ec4e2ca6a123148251004";
-const APIMeteoLink = "http://api.weatherapi.com/v1/current.json?key=433a4377c3ec4e2ca6a123148251004&q=Florence&aqi=no&lang=it";
+const APIMeteoLink = "https://api.weatherapi.com/v1/current.json?key=433a4377c3ec4e2ca6a123148251004&q=Florence&aqi=no&lang=it";
 
 async function getData(citta) {
 
@@ -22,19 +22,46 @@ async function getData(citta) {
         
     }
     
-    const dataRespons = await fetch(`http://api.weatherapi.com/v1/current.json?key=433a4377c3ec4e2ca6a123148251004&q=${citta}&aqi=no&lang=it`);
-    const meteoJson = await dataRespons.json();
-    console.log(meteoJson);
-    temp.innerHTML = meteoJson.current.temp_c + " C";
-    cittaT.innerHTML = meteoJson.location.name;
-    nazione.innerHTML = meteoJson.location.country;
-    ora.innerHTML = meteoJson.location.localtime;
-    precipitazioni.innerHTML = meteoJson.current.precip_in + " %";
-    vento.innerHTML = meteoJson.current.wind_kph + " Km/h";
-    condizioni.innerHTML = meteoJson.current.condition.text;
+    try {
+        const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=433a4377c3ec4e2ca6a123148251004&q=${citta}&aqi=no&lang=it`);
+
+        if (!response.ok) {
+            throw new Error("Città non valida o richiesta fallita");
+        }
+
+        const meteoJson = await response.json();
+        setData(meteoJson);
+        console.log(meteoJson);
+
+    } catch (error) {
+
+        alert(error.message);
+        console.error("Errore nel fetch:", error);
+
+    }
+   
+}
+
+function setData(data){
+
+    temp.innerHTML = data.current.temp_c + " C";
+    cittaT.innerHTML = data.location.name;
+    nazione.innerHTML = data.location.country;
+    ora.innerHTML = data.location.localtime;
+    precipitazioni.innerHTML = data.current.precip_in + " %";
+    vento.innerHTML = data.current.wind_kph + " Km/h";
+    umidita.innerHTML = data.current.humidity + " %";
+    condizioni.innerHTML = data.current.condition.text;
+    createImg(data.current.condition.icon);
+  
+}
+
+function createImg(srcImg){
+    
     const img = document.createElement("img");
-    img.src = meteoJson.current.condition.icon;
+    img.src = srcImg;
     condizioni.append(img);
+
 }
 
 
