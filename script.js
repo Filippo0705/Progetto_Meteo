@@ -15,13 +15,13 @@ const APIMeteoLink = "https://api.weatherapi.com/v1/current.json?key=433a4377c3e
 
 async function getData(citta) {
 
-    if(citta == ""){
+    if (citta == "") {
 
         alert("Inserisci prima una città");
         return;
-        
+
     }
-    
+
     try {
         const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=433a4377c3ec4e2ca6a123148251004&q=${citta}&aqi=no&lang=it`);
 
@@ -36,13 +36,13 @@ async function getData(citta) {
     } catch (error) {
 
         alert(error.message);
-        console.error("Errore nel fetch:", error);
+        console.error("Errore nel fetch: ", error);
 
     }
-   
+
 }
 
-function setData(data){
+function setData(data) {
 
     temp.innerHTML = data.current.temp_c + " C";
     cittaT.innerHTML = data.location.name;
@@ -54,18 +54,18 @@ function setData(data){
     condizioni.innerHTML = data.current.condition.text;
     createImg(data.current.condition.icon);
     cambiaSfondo(data.current.condition.text);
-  
+
 }
 
-function createImg(srcImg){
-    
+function createImg(srcImg) {
+
     const img = document.createElement("img");
     img.src = srcImg;
     condizioni.append(img);
 
 }
 
-function cambiaSfondo(meteo){
+function cambiaSfondo(meteo) {
 
     const body = document.body;
 
@@ -92,13 +92,13 @@ function cambiaSfondo(meteo){
 
     // Applica la nuova classe
     body.classList.add(classeMeteo);
-    
-    }
-      
+
+}
+
 cerca.addEventListener("click", () => {
 
     getData(cittaInput.value);
     cittaInput.value = "";
-    
+
 });
 
