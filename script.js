@@ -31,6 +31,7 @@ async function getData(citta) {
 
         const meteoJson = await response.json();
         setData(meteoJson);
+        getDataForecast(citta);
         console.log(meteoJson);
 
     } catch (error) {
@@ -92,6 +93,27 @@ function cambiaSfondo(meteo) {
 
     // Applica la nuova classe
     body.classList.add(classeMeteo);
+
+}
+
+async function getDataForecast(citta) {
+
+    try {
+        const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=433a4377c3ec4e2ca6a123148251004&q=${citta}&days=7&aqi=no&alerts=no`);
+
+        if (!response.ok) {
+            throw new Error("richiesta fallita");
+        }
+
+        const meteoJson = await response.json();
+        console.log(meteoJson);
+
+    } catch (error) {
+
+        alert(error.message);
+        console.error("Errore nel fetch: ", error);
+
+    }
 
 }
 
