@@ -101,6 +101,3 @@ cerca.addEventListener("click", () => {
     cittaInput.value = "";
 
 });
-
-/* Commento prova */
-/* should create conflict */
