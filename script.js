@@ -101,3 +101,5 @@ cerca.addEventListener("click", () => {
     cittaInput.value = "";
 
 });
+
+/* Commento prova giusto per sapere che questo branch è stato effettivamente usato per fare dei test */
