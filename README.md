@@ -1,6 +1,6 @@
 # 🌤️ Weather App Project
 
-**🔗 `Live Demo:`** [Visit the App](https://amazing-vacherin-a4e9d6.netlify.app/)  
+**🔗 `Live Demo:`** [Visit the App](climadiretto.netlify.app)  
 **🌐 `API Used:`** [WeatherAPI.com](https://www.weatherapi.com/)
 
 A simple and responsive web application that allows users to check the weather forecast for any city.
