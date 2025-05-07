@@ -16,6 +16,7 @@ const condizioni = document.getElementById("condizioni");
 const umidita = document.getElementById("umidita");
 
 const forecastBtn = document.getElementById("mostraForecast");
+const forecastContent = document.querySelector("#forecastCards");
 
 // API Info
 const API_KEY = "433a4377c3ec4e2ca6a123148251004";
@@ -30,6 +31,7 @@ function buildWeatherEndpoint(city, type = "current") {
         q: city,
         aqi: "no",
         lang: "it",
+        days: 3 // For forecast, you can adjust this as needed
     });
 
     return `${BASE_URL}${endpointPath}?${params.toString()}`;
@@ -124,13 +126,16 @@ function cambiaSfondo(meteoCondition) {
 cerca.addEventListener("click", async () => {
     let weatherData = await getData(cittaInput.value.trim(), "forecast");
     setData(weatherData);
+    forecastContent.innerHTML = "";
 });
 
 forecastBtn.addEventListener("click", async () => {
     let weatherData = await getData(cittaInput.value.trim(), "forecast");
     if (!weatherData) return;
-    const row = document.createElement("div");
-    row.classList.add("row", "mt-4", "w-100");
-    weatherData.forecast.forecastday.map((day, index) => row.appendChild(generateForecastCol(day.hour[0], `forecast-${index}`)));
-    body.appendChild(row);
+    weatherData.forecast.forecastday.map((day, index) => {
+        day.hour.map((hour) => {
+            forecastContent.appendChild(generateForecastCol(hour, `forecast-${day + hour}`))
+
+        });
+    });
 });

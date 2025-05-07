@@ -2,15 +2,15 @@
 It returns a string containing the HTML structure for the card, with dynamic data. */
 
 function createWeatherCard({ title, subtitle, time, temperature, humidity, wind, precipitation, conditions, cardId = "" }) {
-    const id = cardId ? `id="${cardId}"` : "";
-    const conditionIcon = conditions.icon ? `<img src="${conditions.icon}" alt="${conditions.text}" class="weather-icon" />` : "";
-    return `
+  const id = cardId ? `id="${cardId}"` : "";
+  const conditionIcon = conditions.icon ? `<img src="${conditions.icon}" alt="${conditions.text}" class="weather-icon" />` : "";
+  return `
       <div ${id} class="card shadow p-4" style="max-width: 420px;">
         <div class="card-body text-center">
   
-          <h3 class="card-title mb-0">${title}</h3>
-          <h6 class="text-muted">${subtitle}</h6>
-          <h6 class="text-secondary mb-4">${time}</h6>
+          ${title ? `<h3 class="card-title mb-0">${title}</h3>` : ""}
+          ${subtitle ? `<h5 class="card-subtitle mb-2">${subtitle}</h5>` : ""}
+          ${time ? `<p class="card-text text-muted">${time}</p>` : ""}
   
           <p class="fs-1 fw-bold text-primary mb-1">${temperature}  °C</p>
           <div class="mb-4 d-flex flex-column align-items-center gap-2">
