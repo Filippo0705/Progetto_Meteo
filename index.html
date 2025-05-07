@@ -10,56 +10,59 @@
   <link href="./style.css" rel="stylesheet">
 </head>
 
-<body class="d-flex flex-column align-items-center justify-content-center min-vh-100">
+<body>
+  <div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-10">
 
-  <div id="container">
-    <div class="card shadow w-100 p-4" style="max-width: 420px;">
-      <div class="card-body text-center">
+        <!-- Current weather card -->
+        <div id="container" class="mb-4">
+          <div class="card shadow w-100 p-4" style="max-width: 420px; margin: 0 auto;">
+            <div class="card-body text-center">
 
+              <h3 id="citta" class="card-title mb-0">📍</h3>
+              <h6 id="nazione" class="text-muted"></h6>
+              <h6 id="ora" class="text-secondary mb-4"></h6>
 
-        <h3 id="citta" class="card-title mb-0">📍</h3>
-        <h6 id="nazione" class="text-muted"></h6>
-        <h6 id="ora" class="text-secondary mb-4"></h6>
+              <p id="temp" class="fs-1 fw-bold text-primary mb-1"></p>
+              <div id="condizioni" class="mb-4 d-flex flex-column align-items-center gap-2"></div>
 
+              <div class="row text-start text-muted small g-3">
+                <div class="col-4">
+                  <div class="section-title">Umidità</div>
+                  <div id="umidita">--</div>
+                </div>
+                <div class="col-4">
+                  <div class="section-title">Vento</div>
+                  <div id="vento">--</div>
+                </div>
+                <div class="col-4">
+                  <div class="section-title">Precipitazioni</div>
+                  <div id="precipitazioni">--</div>
+                </div>
+              </div>
 
-        <p id="temp" class="fs-1 fw-bold text-primary mb-1"></p>
-        <div id="condizioni" class="mb-4 d-flex flex-column align-items-center gap-2"></div>
-
-
-        <div class="row text-start text-muted small g-3">
-          <div class="col-4">
-            <div class="section-title">Umidità</div>
-            <div id="umidita">--</div>
-          </div>
-          <div class="col-4">
-            <div class="section-title">Vento</div>
-            <div id="vento">--</div>
-          </div>
-          <div class="col-4">
-            <div class="section-title">Precipitazioni</div>
-            <div id="precipitazioni">--</div>
+              <div class="input-group mt-4">
+                <input type="text" id="inputCitta" class="form-control" placeholder="Inserisci una città">
+                <button id="cerca" class="btn btn-primary">Cerca</button>
+              </div>
+            </div>
           </div>
         </div>
 
-
-        <div class="input-group mt-4">
-          <input type="text" id="inputCitta" class="form-control" placeholder="Inserisci una città">
-          <button id="cerca" class="btn btn-primary">Cerca</button>
+        <!-- Forecast section -->
+        <div id="forecast" class="mt-4">
+          <div class="text-center mb-4">
+            <button id="mostraForecast" type="button" class="btn btn-primary">
+              Show Forecast
+            </button>
+          </div>
+          <div id="forecastCards"></div>
         </div>
+
       </div>
     </div>
   </div>
-
-  <!-- 🔥 NEW: button to Show Forecast -->
-  <div class="container" id="forecast">
-    <div class="mt-4 text-center">
-      <button id="mostraForecast" type="button" class="btn btn-primary">
-        Show Forecast
-      </button>
-    </div>
-    <div class="row mt-4 w-100" id="forecastCards"></div>
-  </div>
-
 
   <script type="module" src="script.js"></script>
   <script type="module" src="cardTemplate.js"></script>
