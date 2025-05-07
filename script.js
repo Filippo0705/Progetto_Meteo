@@ -53,6 +53,7 @@ async function getData(city, type = "current") {
         const weatherData = await response.json();
         console.log(weatherData);
 
+
         return weatherData;
     } catch (error) {
         alert(error.message);
@@ -160,6 +161,7 @@ function cambiaSfondo(meteoCondition) {
     body.classList.add(weatherClass);
 }
 
+
 // Initialize swiper for a given container
 function initSwiper(container) {
     return new Swiper(container, {
@@ -192,6 +194,8 @@ function initSwiper(container) {
         }
     });
 }
+
+
 
 // Event Listener
 cerca.addEventListener("click", async () => {
